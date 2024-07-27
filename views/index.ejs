@@ -1,16 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Files</title>
-  <link rel="stylesheet" type="text/css" href="/styles.css">
+  <meta charset="UTF-8">
+  <title>File Management</title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <h1>Files List</h1>
+  <h1>File Management</h1>
+
+  <h2>Upload a File</h2>
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" required>
+    <button type="submit">Upload</button>
+  </form>
+
+  <h2>Create a New File</h2>
+  <form action="/create" method="post">
+    <input type="text" name="filename" placeholder="Filename" required>
+    <textarea name="content" placeholder="Content" required></textarea>
+    <button type="submit">Create</button>
+  </form>
+
+  <h2>Files</h2>
   <ul>
-    <% files.forEach(file => { %>
-      <li><a href="/files/<%= file %>"><%= file %></a></li>
-    <% }) %>
+    <% files.forEach(function(file) { %>
+      <li>
+        <a href="/files/<%= file %>"><%= file %></a>
+        <form action="/files/<%= file %>?_method=DELETE" method="post" style="display:inline;">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    <% }); %>
   </ul>
-  <a href="/create">Create New File</a>
 </body>
 </html>
