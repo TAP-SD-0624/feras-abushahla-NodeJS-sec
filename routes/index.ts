@@ -11,6 +11,6 @@ router.get('/create', (req, res) => res.render('create'));
 router.post('/create', createFile);
 router.get('/files/:filename', viewFile);
 router.delete('/files/:filename', deleteFile);
-router.get('/upload', upload.single('file'), uploadFile);
+router.post('/upload', upload.single('file'), uploadFile);
 
 export default router;
