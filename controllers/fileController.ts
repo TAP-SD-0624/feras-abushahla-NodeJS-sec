@@ -49,8 +49,8 @@ export const uploadFile = (req: Request, res: Response): void => {
     res.redirect('/');
   };
 
-  // Delete file
-  export const deleteFile = (req: Request, res: Response): void => {
+ // Delete file
+ export const deleteFile = (req: Request, res: Response): void => {
     const { filename } = req.params;
     const filePath = path.join(dataDir, filename);
     fs.unlink(filePath, (err) => {
@@ -61,3 +61,5 @@ export const uploadFile = (req: Request, res: Response): void => {
       res.redirect('/');
     });
   };
+
+ 

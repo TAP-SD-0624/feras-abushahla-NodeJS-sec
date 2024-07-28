@@ -77,11 +77,15 @@ const app = express();
 const PORT = 3000;
 
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', routes);
-app.use(errorHandler);
 app.use(methodOverride('_method'));// middle ware for the delete functionality
+app.use(errorHandler);
+
+app.use('/', routes);
+
 
 // Start server
 app.listen(PORT, () => {
